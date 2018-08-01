@@ -77,7 +77,7 @@ class InitFunc {
     this.checkTemplateIsExist() :
     (await inquirer.prompt(this.getTemplateOptions()));
     // 获取模板下载 tgz
-    if(this.getTempalteTgzUrl(templateAns)) {
+    if(this.isCacheTempalteTgzUrl(templateAns)) {
       // 下载模板
       await this.downloadTemplateTgz();
     }
@@ -120,12 +120,19 @@ class InitFunc {
    * 获取模板 tgz 模板下载地址
    * 对比是否有缓存 zip 文件
    */
-  getTempalteTgzUrl(templateAns) {
+  isCacheTempalteTgzUrl(templateAns) {
     const { targetTemplatePath } = this;
     let templateTgzUrl = null;
     if(templateAns.type === 'URL' && templateAns.tgzUrl) {
       templateTgzUrl = templateAns.tgzUrl;
     } else {
+      // 检测 tnpm 是否存在
+      const isHaveTnpmBuffer = spawn('which',['npm'], {stdio: 'pipe'});
+      const isHaveTnpm = isHaveTnpmBuffer.stdout.toString();
+      if(isHaveTnpm === 'null' || isHaveTnpm === 'undefined') {
+        logger.warn('npm install tnpm ...');
+        spawn('tnpm', ['install', '-g' ,'tnpm', '--registry=https://registry.npm.alibaba-inc.org'])
+      }
       templateTgzUrl = spawn('tnpm', ['view', templateAns.templateName, 'dist.tarball'], { stdio: 'pipe' });
       templateTgzUrl = templateTgzUrl.stdout.toString()
     }
