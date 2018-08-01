@@ -1,0 +1,46 @@
+{
+  "name": "@recore/create",
+  "version": "0.1.0-beta.7",
+  "description": "the recore create",
+  "bin": {
+    "create": "./src/bin/create.js"
+  },
+  "author": {
+    "name": "YJSON",
+    "email": "yjson921305@gmail.com",
+    "url": "https://github.com/yao-json"
+  },
+  "homepage": "https://github.com/nowa-webpack/nowa2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nowa-webpack/nowa2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nowa-webpack/nowa2/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.3.0",
+    "compressing": "^1.2.3",
+    "cross-spawn": "^6.0.5",
+    "download": "^7.0.0",
+    "fs-extra": "^5.0.0",
+    "glob": "^7.1.2",
+    "inquirer": "^6.0.0",
+    "npm-updater": "^3.0.3",
+    "nunjucks": "^3.1.3",
+    "ora": "^2.1.0",
+    "yargs-parser": "^10.1.0"
+  },
+  "types": "./",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "engines": {
+    "node": ">=6.5"
+  },
+  "devDependencies": {
+    "rollup": "^0.62.0"
+  }
+}
